@@ -1,22 +1,21 @@
 package controller;
 
-import model.User;
+import model.EmployeeBody;
+import model.EmployeeHeader;
+import model.Response;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 public class DemoController {
 
-    @GetMapping("/user/all")
-    public List<User> listUser() {
-        List<User> users = new ArrayList<>();
-        users.add(new User(1, "User1"));
-        users.add(new User(2, "User2"));
-
-        return users;
+    @GetMapping("/employee/{id}")
+    public Response getEmplooyeeById(@PathVariable int id) {
+        return new Response(new EmployeeHeader(200),
+                new EmployeeBody(id,
+                        "Somkiat",
+                        "Puisungnoen"));
     }
 
 }
